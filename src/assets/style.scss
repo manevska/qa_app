@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+$clr-primary: #0C1E4D;
+$clr-secondary: #AB8CF1;
+$clr-white: white;
+
+
+body{
+  margin: 0;
+}
+
+button{
+  background: $clr-secondary;
+  color: white;
+  cursor: pointer;
+  min-width: 150px;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: .5s;
+  &:hover{
+    background: darken($clr-secondary, 10%);
+  }
+  &:disabled{
+    background-color: darken($clr-white, 10%);
+  }
+  &.btn-secondary{
+    background: white;
+    border: solid 1px $clr-secondary;
+    color: $clr-secondary;
+  }
+}
+
+*{
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.wrapper{
+  display: flex;
+  min-height: 100vh;
+  > * {
+    padding: 2rem;
+  }
+  aside{
+    background: $clr-primary;
+    width: 30%;
+    h1{
+      color: $clr-white;
+      font-size: 3rem;
+      text-align: center;
+    }
+    p{
+      color: $clr-white;
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+  main{
+    flex: 1;
+  }
+}
+
+header{
+  display: flex;
+  align-items: flex-end;
+  margin: 2rem 0;
+  h1{
+    flex: 1;
+    margin: 0;
+    display: flex;
+    color: $clr-primary;
+  }
+  button{
+    margin-left: 12px;
+  }
+  &.add-header{
+    flex-direction: column;
+    align-items: flex-start;
+    button{
+      margin-left: 0;
+      margin-top: 12px;
+    }
+  }
+}
+
+.questions-wrapper{
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 24px;
+  box-shadow: 0 14px 28px #ded9d9;
+  border-radius: 8px;
+  max-height: 60vh;
+  .question:last-child{
+    margin-bottom: 0;
+  }
+  &--empty{
+    background: rgba(red, .1);
+    padding: 12px;
+    border: solid 1px red;
+    border-radius: 8px;
+    h2{
+      font-weight: normal;
+      font-size: 16px;
+      text-align: center;
+      color: darken(red, 20%);
+    }
+  }
+}
+
+.question{
+  padding: 1rem;
+  border-radius: 4px;
+  border: solid 1px $clr-secondary;
+  margin-bottom: 1rem;
+  &--main{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    pointer-events: none;
+    h2{
+      flex: 1;
+      margin: 0;
+      transition: .5s;
+      cursor: pointer;
+      font-size: 20px;
+      color: $clr-primary;
+      &:hover{
+        opacity: .7;
+      }
+    }
+    button{
+      padding: 0;
+      margin-left: 12px;
+      background: none;
+      min-width: initial;
+      width: 24px;
+      height: 24px;
+      pointer-events: auto;
+      img{
+        width: 100%;
+      }
+      &:hover{
+        filter: brightness(.7);
+      }
+    }
+  }
+  p{
+    pointer-events: none;
+    margin-bottom: 0;
+    margin-top: 1rem;
+    font-size: 16px;
+    color: $clr-primary;
+    display: none;
+  }
+  &.expanded{
+    p{
+      display: block;
+    }
+  }
+}
+
+.tooltip{
+  margin-left: 8px;
+  position: relative;
+  cursor: pointer;
+  img{
+    width: 20px;
+  }
+  p{
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    min-width: 120px;
+    text-align: center;
+    font-weight: normal;
+    padding: 4px;
+    border-radius: 4px;
+    background: rgba($clr-primary, .9);
+    color: white;
+    font-size: 10px;
+    display: none;
+  }
+  &:hover{
+    p{
+      display: flex;
+    }
+  }
+}
+
+
+.popup{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 700px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 4px 44px rgba(0, 0, 0, 0.25);
+  >*{
+    display: flex;
+  }
+  main{
+    flex-direction: column;
+  }
+  span{
+    color: red;
+  }
+  header{
+    justify-content: space-between;
+    margin: 0;
+    align-items: flex-start;
+    button{
+      background: none;
+      min-width: initial;
+      margin-top: 0;
+      padding: 0;
+      margin-right: 0;
+      img{
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+  input, textarea{
+    padding: 12px;
+    font-size: 16px;
+  }
+  label, button{
+    margin-top: 1rem;
+    margin-bottom: 4px;
+  }
+  &.--confirmation{
+    h1{
+      text-align: center;
+    }
+    main{
+      display: flex;
+      flex-direction: row;
+      button{
+        flex: 1;
+        &:first-child{
+          margin-right: 8px;
+        }
+      }
+    }
+
+  }
+}
+
+.input-group{
+  display: flex;
+
+  input {
+    display: none;
+  }
+
+  label {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    &:before {
+      content:'';
+      background-color: transparent;
+      border: 2px solid $clr-secondary;
+      padding: 10px;
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+  input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    width: 6px;
+    height: 14px;
+    border: solid $clr-secondary;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  input:disabled + label:after{
+    border-color: lightgray;
+  }
+  input:disabled + label:before{
+    border-color: lightgray;
+  }
+}
+
+
+@media(max-width: 1000px){
+  .wrapper{
+    flex-direction: column;
+    aside{
+      width: 100%;
+    }
+  }
+
+  .questions-wrapper{
+    max-height: 40vh;
+  }
+  header{
+    flex-wrap: wrap;
+    h1{
+      width: 100%;
+      flex: auto;
+    }
+    button{
+      margin-left: 0;
+      margin-right: 12px;
+      margin-top: 12px;
+    }
+  }
+
+  .tooltip p{
+    right: 0;
+    left: auto;
+    transform: translateX(0);
+  }
+
+  .popup{
+    min-width: 0;
+    width: 90vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+    header{
+      flex-wrap: nowrap;
+      button{
+        align-self: flex-end;
+        margin-top: 24px;
+      }
+    }
+  }
+}
+
+@media(max-width: 600px){
+  .wrapper{
+    aside{
+      h1{
+        font-size: 32px;
+        margin: 0;
+      }
+    }
+  }
+
+  .questions-wrapper{
+    max-height: 35vh;
+    padding: 12px;
+  }
+  header{
+    margin: 1rem 0;
+    h1{
+      font-size: 28px;
+    }
+  }
+
+  .question{
+    h2{
+      font-size: 18px;
+    }
+    p{
+      font-size: 14px;
+    }
+  }
+
+  .popup{
+    width: 95vw;
+    max-height: 80vh;
+    padding: 0 1rem 1rem;
+
+    h1{
+      font-size: 18px;
+    }
+    header{
+      flex-direction: column;
+      button{
+        order: 1;
+      }
+      h1{
+        order: 2;
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+@media(max-width: 420px){
+  .input-group input:checked + label:after{
+    top: 9px;
+  }
+  textarea{
+    max-height: 150px;
+  }
+}
