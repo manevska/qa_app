@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "jsdoc": "jsdoc -a all -c jsdoc.json -r -R README.md ./src/* -d docs/jsdoc && jsdoc2md --files ./src/* > docs/API.md"
   },
   "eslintConfig": {
     "extends": [
@@ -38,5 +39,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "docdash": "^1.2.0",
+    "jsdoc": "^3.6.6",
+    "jsdoc-to-markdown": "^6.0.1"
   }
 }

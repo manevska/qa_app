@@ -1,7 +1,21 @@
 import React, {useState} from 'react';
 import closeIcon from "../../assets/images/close.svg";
 import {connect} from "react-redux";
-
+/**
+ * @namespace QuestionPopUp
+ */
+/**
+ * Generates a Pop-up for adding a new question or editing an existing question.
+ * @author Elena Manevska <96manevskaelena@gmail.com>
+ * @constructor
+ * @memberOf QuestionPopUp
+ * @param {object} props - Props object.
+ * @param {function} props.utilsReducer - Reducer containing actions for updating the state of modal windows.
+ * @param {object} props.utilsReducer.currentQuestion - A question object for the question we are editing.
+ * @param {string} props.utilsReducer.currentQuestion.question - The question we are editing.
+ * @param {string} props.utilsReducer.currentQuestion.answer - The answer we are editing.
+ * @return {object} - React Element
+ */
 function QuestionPopUp (props) {
     const { currentQuestion } = props.utilsReducer;
 
@@ -14,17 +28,37 @@ function QuestionPopUp (props) {
 
     const emptyQuestion = question.trim().length === 0;
 
+    /**
+     * Dispatches an action to the utilsReducer for changing the state to hide the Add New Question Pop-up.
+     *
+     * @memberOf QuestionPopUp
+     * @returns {void}
+     */
     function togglePopUp() {
         props.dispatch({
             type: 'TOGGLE_QUESTION_MODAL'
         });
     }
 
+    /**
+     * A hook with one dependency - counter. When the counter is set to 5, it sets a timer and a countdown starts.
+     * When the counter hits 0, the question is submitted.
+     *
+     * @memberOf QuestionPopUp
+     * @returns {void}
+     */
     React.useEffect(() => {
         counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
         counter === 0 && (editMode ? updateQuestion() : addQuestion());
     }, [counter]);
 
+    /**
+     * Generates a random id for the new question.
+     * Dispatches an action to the dataReducer for adding a new question.
+     *
+     * @memberOf QuestionPopUp
+     * @returns {void}
+     */
     function addQuestion() {
         const id = Math.floor(Math.random() * (10000 - 1) + 1);
         props.dispatch({
@@ -38,6 +72,12 @@ function QuestionPopUp (props) {
         togglePopUp();
     }
 
+    /**
+     * Dispatches an action to the utilsReducer for updating an existing question.
+     *
+     * @memberOf QuestionPopUp
+     * @returns {void}
+     */
     function updateQuestion() {
         props.dispatch({
             type: 'UPDATE_QUESTION',

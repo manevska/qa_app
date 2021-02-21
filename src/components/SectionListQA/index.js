@@ -3,9 +3,28 @@ import infoIcon from "../../assets/images/info.svg";
 import {connect} from "react-redux";
 import Question from '../Question';
 
+/**
+ * @namespace SectionListQA
+ */
+/**
+ * Generates a section of the page for listing added questions and answers.
+ * @author Elena Manevska <96manevskaelena@gmail.com>
+ * @constructor
+ * @memberOf SectionListQA
+ * @param {object} props - Props object.
+ * @param {function} props.dataReducer - Reducer containing actions for updating the state of questions data.
+ * @param {function} props.utilsReducer - Reducer containing actions for updating the state of modal windows.
+ * @return {object} - React Element
+ */
 function SectionListQA (props) {
     const { questions } = props.dataReducer;
 
+    /**
+     * Dispatches an action to the utilsReducer for changing the state to show the Confirmation Pop-up.
+     *
+     * @memberOf SectionListQA
+     * @returns {void}
+     */
     function toggleConfirmationPopUp() {
         props.dispatch({
             type: 'TOGGLE_CONFIRMATION_MODAL',
@@ -13,6 +32,12 @@ function SectionListQA (props) {
         });
     }
 
+    /**
+     * Dispatches an action to the dataReducer for sorting the questions in alphabetical order.
+     *
+     * @memberOf SectionListQA
+     * @returns {void}
+     */
     function sortQuestions() {
         props.dispatch({
             type: 'SORT_ALL'

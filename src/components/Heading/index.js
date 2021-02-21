@@ -1,6 +1,18 @@
 import React from 'react';
 import {connect} from "react-redux";
-
+/**
+ * @namespace Heading
+ */
+/**
+ * Generates a section for showing the name of the app and a counter for how many questions we are showing.
+ * @author Elena Manevska <96manevskaelena@gmail.com>
+ * @constructor
+ * @memberOf Heading
+ * @param {object} props - Props object.
+ * @param {function} props.dataReducer - Reducer containing actions for updating the state of questions data.
+ * @param {object} props.dataReducer.questions - List of all questions.
+ * @return {object} - React Element
+ */
 function Heading (props) {
     const { questions } = props.dataReducer;
     return(

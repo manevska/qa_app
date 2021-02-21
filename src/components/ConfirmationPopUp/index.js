@@ -1,18 +1,42 @@
 import React from 'react';
 import closeIcon from "../../assets/images/close.svg";
 import {connect} from "react-redux";
-
+/**
+ * @namespace ConfirmationPopUp
+ */
+/**
+ * Generates a pop-up for confirming that the question should be removed.
+ * @author Elena Manevska <96manevskaelena@gmail.com>
+ * @constructor
+ * @memberOf ConfirmationPopUp
+ * @param {object} props - Props object.
+ * @param {function} props.utilsReducer - Reducer containing actions for updating the state of modal windows.
+ * @param {object} props.utilsReducer.currentQuestion - The question we want to remove.
+ * @return {object} - React Element
+ */
 function ConfirmationPopUp (props) {
     const { currentQuestion } = props.utilsReducer;
 
     const singleQuestionMode = Object.keys(currentQuestion).length !== 0;
 
+    /**
+     * Dispatches an action to the utilsReducer for changing the state to hide the Confirmation Pop-up.
+     *
+     * @memberOf ConfirmationPopUp
+     * @returns {void}
+     */
     function togglePopUp() {
         props.dispatch({
             type: 'TOGGLE_CONFIRMATION_MODAL'
         });
     }
 
+    /**
+     * Dispatches an action to the dataReducer for removing the selected question.
+     *
+     * @memberOf ConfirmationPopUp
+     * @returns {void}
+     */
     function deleteQuestion() {
         props.dispatch({
             type: 'REMOVE_QUESTION',
@@ -21,6 +45,12 @@ function ConfirmationPopUp (props) {
         togglePopUp();
     }
 
+    /**
+     * Dispatches an action to the dataReducer for removing all questions.
+     *
+     * @memberOf ConfirmationPopUp
+     * @returns {void}
+     */
     function deleteAllQuestions() {
         props.dispatch({
             type: 'REMOVE_ALL'
