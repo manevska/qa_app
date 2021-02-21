@@ -29,8 +29,8 @@ function SectionListQA (props) {
                         <p>Let us help you find the answers!</p>
                     </div>
                 </h1>
-                <button onClick={sortQuestions}>Sort</button>
-                <button onClick={toggleConfirmationPopUp}>Delete all</button>
+                <button id='sort' onClick={sortQuestions}>Sort</button>
+                <button id='delete' onClick={toggleConfirmationPopUp}>Delete all</button>
             </header>
             <div className={'questions-wrapper'}>
                 {
